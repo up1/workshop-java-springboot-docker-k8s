@@ -58,6 +58,8 @@ Call APIs
 * http://localhost:8080/actuator/health
 
 ### 4. Working with Kubernetes
+* [Kubectl](https://kubernetes.io/docs/tasks/tools/)
+
 ```
 $kubectl apply -f k8s
 $kubectl get all
