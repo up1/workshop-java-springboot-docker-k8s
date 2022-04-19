@@ -59,5 +59,6 @@ Call APIs
 
 ### 4. Working with Kubernetes
 ```
-
+$kubectl apply -f k8s
+$kubectl get all
 ```
