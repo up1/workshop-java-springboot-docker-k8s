@@ -1,0 +1,18 @@
+FROM openjdk:11.0.14.1-jdk-slim-buster AS step1
+WORKDIR /src
+COPY . .
+RUN ./mvnw package
+
+FROM openjdk:11.0.14.1-jdk-slim-buster AS step2
+WORKDIR build/dependency
+ARG APPJAR=target/*.jar
+COPY --from=step1 src/${APPJAR} app.jar
+RUN jar -xf ./app.jar
+
+FROM openjdk:11.0.14.1-jre-slim-buster
+VOLUME /tmp
+ARG DEPENDENCY=build/dependency
+COPY --from=step2 ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY --from=step2 ${DEPENDENCY}/META-INF /app/META-INF
+COPY --from=step2 ${DEPENDENCY}/BOOT-INF/classes /app
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.example.hello.HelloApplication"]
