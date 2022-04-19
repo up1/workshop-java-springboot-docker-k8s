@@ -57,7 +57,7 @@ Call APIs
 * http://localhost:8080/
 * http://localhost:8080/actuator/health
 
-#### Push docjer image to [Docker Hub](https://hub.docker.com/)
+#### Push docker image to [Docker Hub](https://hub.docker.com/)
 ```
 $docker login
 $docker image push somkiat/hello-spring:1.0
