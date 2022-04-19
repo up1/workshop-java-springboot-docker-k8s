@@ -1,7 +1,9 @@
-FROM openjdk:11.0.14.1-jdk-slim-buster AS step1
+FROM maven:3.8.5-jdk-11-slim AS step1
 WORKDIR /src
-COPY . .
-RUN ./mvnw package
+COPY pom.xml .
+RUN mvn -e -B dependency:resolve
+COPY src ./src
+RUN mvn -e -B package
 
 FROM openjdk:11.0.14.1-jdk-slim-buster AS step2
 WORKDIR build/dependency
