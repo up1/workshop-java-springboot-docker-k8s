@@ -23,7 +23,7 @@ Call APIs
 
 Build image
 ```
-$docker image build -t somkiat/hello-spring:1.0 .
+$docker image build --progress=plain -t somkiat/hello-spring:1.0 .
 $docker image ls
 ```
 
@@ -40,7 +40,7 @@ Call APIs
 
 Building image
 ```
-$docker-compose -f docker-compose-build.yml build
+$docker-compose -f docker-compose-build.yml build --progress=plain
 $docker image ls
 ```
 
